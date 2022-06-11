@@ -2,6 +2,7 @@ import heapq
 import numpy as np
 
 def backward_search(samples):
+    '''Bacward Elimination'''
     nodes = make_queue(samples)
     repeated_indices = []
     last = []
@@ -25,6 +26,7 @@ def backward_search(samples):
     return final
 
 def forward_search(samples):
+    '''Forward Selection'''
     nodes = make_queue(samples)
     repeated_indices = []
     last = []
@@ -49,7 +51,7 @@ def forward_search(samples):
     
     
 def make_queue(samples):
-    
+    '''Make queue'''
     f_num = samples.shape[1] - 1
     labels = samples[:, 0]
     features = samples[:, 1:]
@@ -62,20 +64,22 @@ def make_queue(samples):
     return [heapq.heappop(initial_lst)]
 
 def empty(nodes):
+    '''Check if the queue is emtpy'''
     if len(nodes) == 0:
         return True
 
 def remove_front(nodes):
+    '''pop the front'''
     return heapq.heappop(nodes)
 
 def queuing_function(nodes, child_nodes, goal=None):
-    # Get the node with the minimium path cost
+    ''' Get the node''' 
     for cnode in child_nodes:
         heapq.heappush(nodes, cnode)
     return nodes
 
 def expand(node, samples):
-    
+    ''' Expand the child ''' 
     indices = node[1]
     f_len = samples.shape[1] -1
     all_indices = np.arange(f_len)

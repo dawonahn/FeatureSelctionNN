@@ -1,6 +1,7 @@
 import numpy as np
 
 def nearest_neighbors(labels, features):
+    ''' Find the nearest neighbors''' 
     predicted_labels = []
     for i, s in enumerate(features):
         sample = features[i]
@@ -14,6 +15,7 @@ def nearest_neighbors(labels, features):
     return score
 
 def find_nearest_neighbors(sample, neighbors, labels):
+    ''' Find the nearest neighbors''' 
     diff = (sample-np.array(neighbors)) ** 2
     if len(diff.shape) != 1:
         diff = diff.sum(axis = 1)
